@@ -1,4 +1,4 @@
-import requests
+import os
 import threading
 import telebot
 import subprocess
@@ -12,7 +12,9 @@ except Exception as e:
     print(f"❌ خطأ أثناء تثبيت Playwright: {e}")
 
 # ✅ إعدادات بوت تيليجرام
-BOT_TOKEN = ""
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # قراءة التوكن من المتغير البيئي
+if not BOT_TOKEN:
+    print("❌ لم يتم العثور على توكن البوت. تأكد من إضافته كمتغير بيئي.")
 bot = telebot.TeleBot(BOT_TOKEN)
 
 app = Flask(__name__)

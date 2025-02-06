@@ -4,6 +4,7 @@ import telebot
 import subprocess
 from flask import Flask, request
 from playwright.sync_api import sync_playwright
+import requests
 
 # ✅ تثبيت Playwright والمتصفحات تلقائيًا عند بدء التشغيل
 try:
@@ -15,6 +16,8 @@ except Exception as e:
 BOT_TOKEN = os.getenv("BOT_TOKEN")  # قراءة التوكن من المتغير البيئي
 if not BOT_TOKEN:
     print("❌ لم يتم العثور على توكن البوت. تأكد من إضافته كمتغير بيئي.")
+    exit(1)  # إيقاف التشغيل في حال عدم العثور على التوكن
+
 bot = telebot.TeleBot(BOT_TOKEN)
 
 app = Flask(__name__)
@@ -85,4 +88,4 @@ def start_bot():
 if __name__ == '__main__':
     print(f"✅ تشغيل Flask على Render")
     threading.Thread(target=start_bot, daemon=True).start()
-    app.run(host="0.0.0.0", port=8080, debug=True, use_reloader=False)
+    app.run(host="0.0.0.0", port=10000, debug=True, use_reloader=False)  # تحديث المنفذ إلى 10000

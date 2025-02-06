@@ -7,3 +7,4 @@ httpx
 beautifulsoup4
 lxml
 pytz
+pyTelegramBotAPI==4.12.0
